@@ -1,8 +1,10 @@
 {
-	"FromMailAddress":"*@163.com",
-	"ToMailAddress":"*@163.com",
+	"FromMailAddress":"test@163.com",
+	"ToMailAddresses":["test@163.com","test@gmail.com"],
 	"SmtpServer":"smtp.163.com",
-	"SmtpUsername":"*@163.com",
+	"SmtpUsername":"test@163.com",
 	"SmtpPassword":"password",
-	"BanLocalIp":true
+	"BanLocalIp":true,
+	"SendAtStartUp":true,
+	"SendWhenChange":true
 }
