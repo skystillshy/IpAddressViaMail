@@ -15,22 +15,31 @@ namespace IpAddressViaMailCSharp
     {
         public static Config CurrentConfig;
         [DataMember]
-        public string SmtpServer { get; private set; }
+        public string SmtpServer;
         [DataMember]
-        public string SmtpUsername { get; private set; }
+        public string SmtpUsername;
         [DataMember]
-        public string SmtpPassword { get; private set; }
+        public string SmtpPassword;
         [DataMember]
-        public string ToMailAddress { get; private set; }
+        public string[] ToMailAddresses;
         [DataMember]
-        public string FromMailAddress { get; private set; }
+        public string FromMailAddress;
         [DataMember]
-        public bool BanLocalIp { get; private set; }
+        public bool BanLocalIp;
+        [DataMember]
+        public bool SendAtStartUp;
+        [DataMember]
+        public bool SendWhenChange;
 
         internal static void Inital()
         {
             try
             {
+                if (!File.Exists("config.json"))
+                {
+                    Console.WriteLine("No Config.Json File Found.");
+                    Console.ReadLine();
+                }
                 CurrentConfig = Config.DeSerialize(
                     File.ReadAllText(
                         "config.json"

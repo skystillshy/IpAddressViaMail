@@ -35,7 +35,8 @@ namespace IpAddressViaMailCSharp.Network
         public IpMonitor()
         {
             LastIpAddress = GetIp.GetLocalIps();
-            //SendIpAddressViaSMTP("Program Initialed");
+            if (Config.CurrentConfig.SendAtStartUp)
+                SendIpAddressViaSMTP("Program Initialed");
 
             //监视时间
             monitor = new Timer(60000);
@@ -47,7 +48,10 @@ namespace IpAddressViaMailCSharp.Network
         {
             if(!GetIp.GetLocalIps().SequenceEqual(LastIpAddress))
             {
-                SendIpAddressViaSMTP("IP address changed");
+                if (Config.CurrentConfig.SendWhenChange)
+                {
+                    SendIpAddressViaSMTP("IP address changed");
+                }
             }
         }
     }

@@ -36,10 +36,16 @@ namespace IpAddressViaMailCSharp.Network
             // Create a mailing address that includes a UTF8 character 
             // in the display name.
             MailAddress from = new MailAddress(Config.CurrentConfig.FromMailAddress, "WenX", System.Text.Encoding.UTF8);
-            // Set destinations for the e-mail message.
-            MailAddress to = new MailAddress(Config.CurrentConfig.ToMailAddress);
+            
             // Specify the message content.
-            MailMessage message = new MailMessage(from, to);
+            MailMessage message = new MailMessage();
+            message.From = from;
+            foreach (var i in Config.CurrentConfig.ToMailAddresses)
+            {
+                // Set destinations for the e-mail message.
+                MailAddress to = new MailAddress(i);
+                message.To.Add(to);
+            }
             message.Body = body;
             message.BodyEncoding = System.Text.Encoding.UTF8;
             message.Subject = subject;
