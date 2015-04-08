@@ -1,0 +1,8 @@
+{
+	"FromMailAddress":"*@163.com",
+	"ToMailAddress":"*@163.com",
+	"SmtpServer":"smtp.163.com",
+	"SmtpUsername":"*@163.com",
+	"SmtpPassword":"password",
+	"BanLocalIp":true
+}
