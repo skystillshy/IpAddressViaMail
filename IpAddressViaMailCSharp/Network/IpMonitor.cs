@@ -46,8 +46,10 @@ namespace IpAddressViaMailCSharp.Network
 
         private void monitor_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if(!GetIp.GetLocalIps().SequenceEqual(LastIpAddress))
+            var NewIpAddress=GetIp.GetLocalIps();
+            if(!NewIpAddress.SequenceEqual(LastIpAddress))
             {
+                LastIpAddress = NewIpAddress;
                 if (Config.CurrentConfig.SendWhenChange)
                 {
                     SendIpAddressViaSMTP("IP address changed");

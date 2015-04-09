@@ -40,10 +40,15 @@ namespace IpAddressViaMailCSharp
                     Console.WriteLine("No Config.Json File Found.");
                     Console.ReadLine();
                 }
+
                 CurrentConfig = Config.DeSerialize(
                     File.ReadAllText(
                         "config.json"
                     ));
+
+                Console.WriteLine("Config loaded:");
+                Console.WriteLine(Config.Serialize(CurrentConfig));
+
             }
             catch(Exception e)
             {
