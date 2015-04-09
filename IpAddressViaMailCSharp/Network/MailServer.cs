@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -10,7 +11,6 @@ namespace IpAddressViaMailCSharp.Network
 {
     class MailServer
     {
-        static bool mailSent = false;
         private static void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
         {
             // Get the unique identifier for this asynchronous operation.
@@ -18,17 +18,16 @@ namespace IpAddressViaMailCSharp.Network
 
             if(e.Cancelled)
             {
-                Console.WriteLine("[{0}] Send canceled.", token);
+                Trace.WriteLine("[{0}] Send canceled.", token);
             }
             if(e.Error != null)
             {
-                Console.WriteLine("[{0}] {1}", token, e.Error.ToString());
+                Trace.WriteLine(e.Error.ToString());
             }
             else
             {
-                Console.WriteLine("Email sent.");
+                Trace.WriteLine("Email sent.");
             }
-            mailSent = true;
         }
         public static void SendMail(string body, string subject)
         {
@@ -67,7 +66,7 @@ namespace IpAddressViaMailCSharp.Network
             // For this example, the userToken is a string constant. 
             string userState = "test message1";
             client.SendAsync(message, userState);
-            Console.WriteLine("Sending message...");
+            Trace.WriteLine("Sending message...");
         }
     }
 }

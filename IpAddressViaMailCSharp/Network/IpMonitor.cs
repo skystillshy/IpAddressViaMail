@@ -7,14 +7,20 @@ using System.Threading.Tasks;
 
 namespace IpAddressViaMailCSharp.Network
 {
+    /// <summary>
+    /// Ip Monitor Class
+    /// 
+    /// Scan ip every 60 seconds and send email if necessary.
+    /// </summary>
     class IpMonitor
     {
         Timer monitor=new Timer();
         List<string> LastIpAddress=new List<string>();
 
         /// <summary>
-        /// 将LastIpAddress返回成邮件中的正文
+        /// Format ip address for email.
         /// </summary>
+        /// <param name="addtional_info"></param>
         /// <returns></returns>
         string IpAddressToString(string addtional_info)
         {
@@ -25,6 +31,7 @@ namespace IpAddressViaMailCSharp.Network
 
             return ret;
         }
+
 
         void SendIpAddressViaSMTP(string addtional_info)
         {

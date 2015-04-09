@@ -13,14 +13,11 @@ namespace IpAddressViaMailCSharp
     {
         static void Main(string[] args)
         {
-            ////////////////////////////////////
-            //
-            //Config s = new Config();
-            //s.ToMailAddresses=new string[10];
-            //string ss = Config.Serialize(s);
-            ////////////////////////////////////
-
+            //Initial logging
+            Logging.Initial();
+            //Load from config file
             Config.Inital();
+            //Start Monitor
             IpMonitor monitor=new IpMonitor();
             while(true)
             {

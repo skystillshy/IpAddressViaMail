@@ -37,8 +37,7 @@ namespace IpAddressViaMailCSharp
             {
                 if (!File.Exists("config.json"))
                 {
-                    Console.WriteLine("No Config.Json File Found.");
-                    Console.ReadLine();
+                    Trace.WriteLine("No Config.Json File Found.");
                 }
 
                 CurrentConfig = Config.DeSerialize(
@@ -46,13 +45,12 @@ namespace IpAddressViaMailCSharp
                         "config.json"
                     ));
 
-                Console.WriteLine("Config loaded:");
-                Console.WriteLine(Config.Serialize(CurrentConfig));
+                Trace.WriteLine("Config loaded:");
+                Trace.WriteLine(Config.Serialize(CurrentConfig));
 
             }
             catch(Exception e)
             {
-                Console.WriteLine("[{0}] {1}", e.Message, e.StackTrace);
                 Trace.WriteLine(e);
             }
         }
